@@ -74,4 +74,28 @@ function lanzarGlobos() {
 }
 
 // Evitar autoplay en móviles hasta interacción
-// El control de audio ya permite pausar/reanudar manualmente 
+// El control de audio ya permite pausar/reanudar manualmente
+
+// Posicionar los cartelitos en lugares aleatorios de la pantalla
+function posicionarCartelitos() {
+    const signs = document.querySelectorAll('.sign');
+    const posiciones = [
+        {top: '10%', left: '8%'},
+        {top: '18%', right: '10%'},
+        {top: '60%', left: '12%'},
+        {top: '75%', right: '8%'},
+        // Puedes agregar más posiciones si agregas más cartelitos
+    ];
+    signs.forEach((sign, i) => {
+        const pos = posiciones[i] || {
+            top: Math.random()*80 + 5 + '%',
+            left: Math.random()*80 + 5 + '%'
+        };
+        Object.assign(sign.style, pos);
+        // Animación flotante con diferente delay
+        sign.style.animationDelay = (i * 0.7) + 's';
+    });
+}
+
+window.addEventListener('DOMContentLoaded', posicionarCartelitos);
+window.addEventListener('resize', posicionarCartelitos); 
