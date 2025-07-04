@@ -36,7 +36,10 @@ giftBox.addEventListener('click', () => {
         setTimeout(() => {
             mostrarMensaje();
             lanzarGlobos();
-            audio.play();
+            // Solo reproducir si no está ya sonando
+            if (audio.paused) {
+                audio.play();
+            }
         }, 700);
     }, 900);
 });
@@ -68,4 +71,7 @@ function lanzarGlobos() {
         balloonsDiv.appendChild(balloon);
         setTimeout(() => balloon.remove(), 6000);
     }
-} 
+}
+
+// Evitar autoplay en móviles hasta interacción
+// El control de audio ya permite pausar/reanudar manualmente 
